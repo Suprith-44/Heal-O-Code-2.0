@@ -495,6 +495,7 @@ const handleWheel = (e) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-pink-600 to-pink-400 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all"
+            onClick={() => window.open("https://forms.gle/wPkrVQwQkpAFcVp86", "_blank")}
           >
             REGISTER NOW
           </motion.button>
