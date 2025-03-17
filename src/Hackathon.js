@@ -86,7 +86,7 @@ const HackathonWebsite = () => {
   const [seconds, setSeconds] = useState(0);
   
   // Set the registration deadline (example: April 15, 2025)
-  const deadline = new Date("March 24, 2025 23:59:59").getTime();
+  const deadline = new Date("March 25, 2025 23:59:59").getTime();
   
   useEffect(() => {
     // Logo animation timing
@@ -134,7 +134,19 @@ const HackathonWebsite = () => {
     document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
   };
   
-  const handleWheel = (e) => {
+  // Replace your current handleWheel function with this improved version
+const handleWheel = (e) => {
+  // Add a throttle/debounce mechanism
+  if (e.target.scrollingTimer) return; // Prevent multiple rapid scrolls
+  
+  e.target.scrollingTimer = true;
+  
+  // Use a threshold to determine if the scroll was significant
+  const scrollThreshold = 80;
+  
+  // Only change sections on significant scroll movements
+  if (Math.abs(e.deltaY) > scrollThreshold) {
+    // Determine direction
     if (e.deltaY > 0) {
       // Scrolling down
       const currentIndex = sections.indexOf(currentSection);
@@ -148,7 +160,13 @@ const HackathonWebsite = () => {
         scrollToSection(sections[currentIndex - 1]);
       }
     }
-  };
+  }
+  
+  // Reset the timer after a delay to allow scrolling again
+  setTimeout(() => {
+    if (e.target) e.target.scrollingTimer = false;
+  }, 1000); // 1 second cooldown between section changes
+};
   
   // Loading animation screen
   if (loading) {
@@ -211,8 +229,8 @@ const HackathonWebsite = () => {
                   transition={{ duration: 0.8, delay: 1.2 }}
                   className="text-6xl font-bold mb-4 relative z-10"
                 >
-                  <span className="text-pink-500">HEAL</span ><span className="text-white-500"></span>-O-
-                  <span className="text-pink-500">CODE</span><span className="text-white-500"></span> 2.0
+                  <span className="text-pink-500">HEAL</span><span className="text-white">-O-</span>
+                  <span className="text-pink-500">CODE</span><span className="text-white"> 2.0</span>
                 </motion.h1>
               </div>
               
@@ -433,6 +451,26 @@ const HackathonWebsite = () => {
             <div className="text-sm uppercase tracking-wider mb-3 font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-pink-500">
               REGISTRATION DEADLINE
             </div>
+            
+            {/* Add this attractive date display */}
+            <div className="mb-5">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-pink-600/20 to-pink-400/20 border border-pink-500/50"
+              >
+                <span className="text-white font-medium">
+                  <span className="text-pink-400 mr-2">⏰</span>
+                  <span className="text-xl font-bold text-white">25</span>
+                  <sup className="text-sm text-pink-300">th</sup> 
+                  <span className="text-xl font-bold ml-1 text-white">March 2025</span>
+                  <span className="text-pink-300 ml-2 font-light">23:59 IST</span>
+                </span>
+              </motion.div>
+            </div>
+            
+            {/* Countdown timer boxes */}
             <div className="flex justify-center gap-4">
               <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
                 <div className="text-4xl font-bold text-pink-400">{days}</div>
@@ -492,46 +530,43 @@ const HackathonWebsite = () => {
             <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gray-900 rounded-2xl p-6 border border-pink-500/30"
-            >
-              <div className="flex items-center mb-6">
-                <Users className="text-pink-500 mr-4" size={36} />
-                <h3 className="text-2xl font-bold">About WEAL Club</h3>
-              </div>
-              <p className="text-gray-300 leading-relaxed">
-                WEAL (We Engineer and Lead) is a student-led technical club at PES University dedicated to fostering innovation and technical excellence among students. The club provides a platform for students to collaborate, learn, and apply their skills to solve real-world problems. Through various events, workshops, and hackathons, WEAL aims to nurture the next generation of tech leaders and innovators.
-              </p>
-            </motion.div>
+          {/* Single wider card about the hackathon instead of two cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-black rounded-2xl p-8 border border-pink-500/30 mb-12"
+          >
+            <div className="flex items-center mb-6">
+              <Heart className="text-pink-500 mr-4" size={36} />
+              <h3 className="text-2xl font-bold">About HEAL-O-CODE</h3>
+            </div>
+            <p className="text-gray-300 leading-relaxed mb-6">
+              HEAL-O-CODE 2.0 is a premier health-tech hackathon organized by the WEAL Club of PES University. This innovative event brings together passionate developers, designers, and healthcare enthusiasts to create technological solutions addressing critical healthcare challenges. Participants will work in teams to develop prototypes that could potentially transform the healthcare industry, focusing on accessibility, efficiency, and patient care. Join us for an unforgettable 24-hour journey of coding, collaboration, and innovation at the intersection of technology and wellness.
+            </p>
             
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-gray-900 rounded-2xl p-6 border border-pink-500/30"
-            >
-              <div className="flex items-center mb-6">
-                <Heart className="text-pink-500 mr-4" size={36} />
-                <h3 className="text-2xl font-bold">About HEAL-O-CODE</h3>
+            {/* Venue information with icon and styling */}
+            <div className="mt-8 bg-black/50 p-4 rounded-lg border border-pink-500/20">
+              <div className="flex items-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                <h4 className="text-lg font-semibold text-white">Venue</h4>
               </div>
-              <p className="text-gray-300 leading-relaxed">
-                HEAL-O-CODE 2.0 is a premier health-tech hackathon organized by the WEAL Club of PES University. This innovative event brings together passionate developers, designers, and healthcare enthusiasts to create technological solutions addressing critical healthcare challenges. Participants will work in teams to develop prototypes that could potentially transform the healthcare industry, focusing on accessibility, efficiency, and patient care. Join us for an unforgettable 36-hour journey of coding, collaboration, and innovation at the intersection of technology and wellness.
+              <p className="text-gray-300 pl-7">
+                <span className="bg-gradient-to-r from-pink-400 to-pink-500 text-transparent bg-clip-text font-medium">MRD Student Center</span>, 
+                PES University, Electronic City Campus
               </p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
-            className="mt-16 text-center"
+            className="mt-8 text-center"
           >
             <h3 className="text-2xl font-bold mb-4">Why Participate?</h3>
             <div className="grid md:grid-cols-3 gap-6 mt-8">
@@ -562,24 +597,648 @@ const HackathonWebsite = () => {
       </section>
       
       {/* Placeholder sections for future development */}
-      <section id="timeline" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl font-bold text-pink-500">Timeline Section</h2>
+      <section 
+        id="timeline" 
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-12"
+      >
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl font-bold mb-2 text-center">Timeline</h2>
+            <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="relative inline-block mb-5">
+              <div className="absolute inset-0 blur-xl bg-pink-500/20 rounded-full"></div>
+              <Clock className="text-pink-500 mx-auto" size={64} />
+            </div>
+            
+            <h3 className="text-2xl font-bold mb-3">Coming Soon!</h3>
+            
+            <p className="text-gray-400 max-w-2xl mx-auto mb-6">
+              We're finalizing the exciting timeline for HEAL-O-CODE 2.0. 
+              Check back soon for detailed schedule information including mentoring sessions, coding periods, and the final presentation.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="bg-black/40 p-5 rounded-lg border border-pink-500/20 backdrop-blur-sm"
+              >
+                <div className="flex items-center mb-3 text-pink-500 justify-center">
+                  <Calendar size={24} />
+                  <h4 className="ml-2 text-lg font-medium"></h4>
+                </div>
+                <p className="text-gray-400 text-sm">
+                  Opening ceremony, team formations, and challenge announcements
+                </p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-black/40 p-5 rounded-lg border border-pink-500/20 backdrop-blur-sm"
+              >
+                <div className="flex items-center mb-3 text-pink-500 justify-center">
+                  <Code size={24} />
+                  <h4 className="ml-2 text-lg font-medium"></h4>
+                </div>
+                <p className="text-gray-400 text-sm">
+                  24-hour coding period with mentor support and workshops
+                </p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="bg-black/40 p-5 rounded-lg border border-pink-500/20 backdrop-blur-sm"
+              >
+                <div className="flex items-center mb-3 text-pink-500 justify-center">
+                  <Trophy size={24} />
+                  <h4 className="ml-2 text-lg font-medium"></h4>
+                </div>
+                <p className="text-gray-400 text-sm">
+                  Project presentations, judging, and awards ceremony
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Optimized background elements */}
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
+      </section>
+
+      <section 
+        id="challenges" 
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
+      >
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+          >
+            <h2 className="text-4xl font-bold mb-2">Challenges</h2>
+            <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="relative inline-block">
+              <div className="absolute inset-0 blur-xl bg-pink-500/20 rounded-full"></div>
+              <Code className="text-pink-500 mx-auto mb-6" size={64} />
+            </div>
+            
+            <h3 className="text-2xl font-bold mb-4">Challenges Unveiling Soon!</h3>
+            
+            <p className="text-gray-400 max-w-2xl mx-auto mb-10">
+              Our team of experts is crafting innovative health-tech challenges that will push your creativity and technical skills to new heights. 
+              The challenge tracks will be announced soon.
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              <div className="bg-black/60 border border-pink-500/20 rounded-lg p-5 backdrop-blur-sm relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <Heart className="text-pink-500 mb-3 mx-auto" size={28} />
+                  <h4 className="font-medium mb-2">Healthcare Access</h4>
+                  <p className="text-sm text-gray-400">Solutions that improve healthcare accessibility for all</p>
+                </div>
+              </div>
+              <div className="bg-black/60 border border-pink-500/20 rounded-lg p-5 backdrop-blur-sm relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <Users className="text-pink-500 mb-3 mx-auto" size={28} />
+                  <h4 className="font-medium mb-2">Patient Care</h4>
+                  <p className="text-sm text-gray-400">Innovations for improving patient monitoring and care</p>
+                </div>
+              </div>
+              <div className="bg-black/60 border border-pink-500/20 rounded-lg p-5 backdrop-blur-sm relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <MessageCircle className="text-pink-500 mb-3 mx-auto" size={28} />
+                  <h4 className="font-medium mb-2">Mental Wellness</h4>
+                  <p className="text-sm text-gray-400">Tech solutions for mental health awareness and support</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+        
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
       </section>
       
-      <section id="challenges" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl font-bold text-pink-500">Challenges Section</h2>
+      <section 
+        id="prizepool" 
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
+      >
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+          >
+            <h2 className="text-4xl font-bold mb-2">Prize Pool</h2>
+            <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="relative inline-block mb-10">
+              <div className="absolute inset-0 blur-xl bg-pink-500/20 rounded-full"></div>
+              <Trophy className="text-pink-500 mx-auto" size={64} />
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-pink-600/20 to-pink-400/20 p-6 rounded-2xl border border-pink-500/30 max-w-md mx-auto mb-12"
+            >
+              <h3 className="text-2xl font-bold mb-2">Total Prize Pool</h3>
+              <div className="text-5xl md:text-6xl font-bold my-4 bg-gradient-to-r from-pink-400 to-pink-500 text-transparent bg-clip-text">
+                ₹18,000
+              </div>
+              <p className="text-gray-300 mb-2">Win big and gain recognition for your innovative health-tech solutions</p>
+            </motion.div>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {/* First Prize */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-yellow-400 to-yellow-600 w-16 h-16 rounded-full flex items-center justify-center border-4 border-black z-10">
+                <span className="text-black text-2xl font-bold">1st</span>
+              </div>
+              <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-yellow-500/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">₹10,000</div>
+                  <p className="text-gray-300">First Prize</p>
+                  
+                  <div className="w-16 h-1 bg-yellow-500/30 mx-auto my-4"></div>
+                  
+                  <ul className="text-gray-400 text-sm space-y-2">
+                    <li>Winner Certificates</li>
+                    <li>Exclusive Opportunities</li>
+                    <li>Recognition at Awards Ceremony</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Second Prize */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-gray-300 to-gray-400 w-16 h-16 rounded-full flex items-center justify-center border-4 border-black z-10">
+                <span className="text-black text-2xl font-bold">2nd</span>
+              </div>
+              <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-gray-400/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-b from-gray-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-300 to-gray-400 text-transparent bg-clip-text">₹5,000</div>
+                  <p className="text-gray-300">Second Prize</p>
+                  
+                  <div className="w-16 h-1 bg-gray-400/30 mx-auto my-4"></div>
+                  
+                  <ul className="text-gray-400 text-sm space-y-2">
+                    <li>Runner-up Certificates</li>
+                    <li>Networking Opportunities</li>
+                    <li>Recognition at Awards Ceremony</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Third Prize */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-amber-600 to-amber-800 w-16 h-16 rounded-full flex items-center justify-center border-4 border-black z-10">
+                <span className="text-black text-2xl font-bold">3rd</span>
+              </div>
+              <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-amber-700/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-b from-amber-700/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-amber-600 to-amber-700 text-transparent bg-clip-text">₹3,000</div>
+                  <p className="text-gray-300">Third Prize</p>
+                  
+                  <div className="w-16 h-1 bg-amber-700/30 mx-auto my-4"></div>
+                  
+                  <ul className="text-gray-400 text-sm space-y-2">
+                    <li>2nd Runner-Up Certificates</li>
+                    <li>Networking Opportunities</li>
+                    <li>Recognition at Awards Ceremony</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center text-gray-400 text-2xl font-bold mt-10 max-w-2xl mx-auto"
+          >
+            All participants will receive certificates of participation. Special prizes may be awarded for innovative solutions in specific categories.
+          </motion.p>
+        </div>
+        
+        {/* Background elements */}
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
+        <motion.div
+          initial={{ rotate: 0 }}
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
+          className="absolute top-1/4 right-1/4 opacity-5 w-96 h-96"
+        >
+          <div className="w-full h-full border border-pink-500 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 -translate-x-1/2 -translate-y-1/2 border border-pink-500 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 -translate-x-1/2 -translate-y-1/2 border border-pink-500 rounded-full"></div>
+        </motion.div>
       </section>
       
-      <section id="prizepool" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl font-bold text-pink-500">Prize Pool Section</h2>
+      {/* Add this comprehensive FAQ section */}
+      <section 
+        id="faq" 
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
+      >
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+          >
+            <h2 className="text-4xl font-bold mb-2">FAQs</h2>
+            <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <div className="relative inline-block mb-8">
+              <div className="absolute inset-0 blur-xl bg-pink-500/20 rounded-full"></div>
+              <HelpCircle className="text-pink-500 mx-auto" size={64} />
+            </div>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Got questions about HEAL-O-CODE 2.0? Find answers to commonly asked questions below.
+            </p>
+          </motion.div>
+          
+          <div className="max-w-4xl mx-auto">
+            {/* FAQ Item 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">Who can participate in HEAL-O-CODE 2.0?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    HEAL-O-CODE 2.0 is open to all students of PES University. Participants from all branches and years of study are welcome to join the hackathon.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            {/* FAQ Item 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">Can I participate solo?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    No, HEAL-O-CODE 2.0 requires participants to form teams of 3-4 members. If you don't have a team, please feel free to contact us! We can help match you with other participants.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            {/* FAQ Item 3 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">Is there any registration fee?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    Yes, there is a registration fee of ₹150 per person. 
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            {/* FAQ Item 4 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">What should I bring to the hackathon?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    Participants should bring their own laptops, chargers, any specific hardware needed for your project, and your student ID. We'll provide power outlets, internet connectivity, workspace, and refreshments throughout the event.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            {/* FAQ Item 5 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">Do I need prior hackathon experience?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    Not at all! HEAL-O-CODE 2.0 welcomes participants of all experience levels, from beginners to experienced hackers. We'll have mentors available to guide you throughout the event, and workshops to help you build your skills.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            {/* FAQ Item 6 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.7 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">What kind of projects can I build?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    Your project must address a healthcare or wellness challenge. This can include mobile apps, web applications, hardware solutions, or AI/ML systems. Specific challenge tracks will be announced closer to the event, but all projects should focus on the intersection of technology and healthcare.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            {/* FAQ Item 7 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">How will projects be judged?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    Projects will be evaluated based on innovation, technical complexity, adherence to the challenge theme, user experience, and presentation quality. A panel of judges from healthcare and technology industries will review all submissions and select the winners.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+            
+            
+            {/* FAQ Item 8 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.9 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="group">
+                <details className="group">
+                  <summary className="flex justify-between items-center p-6 cursor-pointer rounded-xl bg-black border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                    <h3 className="text-lg font-semibold">Will food be provided during the event?</h3>
+                    <div className="text-pink-500 transition-transform group-open:rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2 text-gray-300">
+                    Yes! We'll provide meals, snacks, and beverages throughout the entire hackathon. If you have any dietary restrictions, please let us know during registration so we can accommodate your needs.
+                  </div>
+                </details>
+              </div>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-400">
+              Have a question that's not answered here? Feel free to reach out!
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-pink-600 to-pink-400 text-white font-medium py-2 px-6 rounded-full mt-4 shadow-lg shadow-pink-500/20 hover:shadow-pink-500/40 transition-all"
+            >
+              Contact Us
+            </motion.button>
+          </motion.div>
+        </div>
+        
+        {/* Background elements */}
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
       </section>
       
-      <section id="faq" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl font-bold text-pink-500">FAQ Section</h2>
-      </section>
-      
-      <section id="contact" className="min-h-screen flex items-center justify-center">
-        <h2 className="text-4xl font-bold text-pink-500">Contact Us Section</h2>
+      <section 
+        id="contact" 
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
+      >
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+          >
+            <h2 className="text-4xl font-bold mb-2">Contact Us</h2>
+            <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <div className="relative inline-block mb-8">
+              <div className="absolute inset-0 blur-xl bg-pink-500/20 rounded-full"></div>
+              <Mail className="text-pink-500 mx-auto" size={64} />
+            </div>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Have any questions or need further information? Feel free to reach out to us!
+            </p>
+          </motion.div>
+          
+          <div className="max-w-4xl mx-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="bg-black p-6 rounded-xl border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                <h3 className="text-lg font-semibold mb-2">Email</h3>
+                <p className="text-gray-300">weal.ecc@pes.edu</p>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="bg-black p-6 rounded-xl border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                <h3 className="text-lg font-semibold mb-2">Phone</h3>
+                <p className="text-gray-300">Club Head: Sameer Beedi</p>
+                <p className="text-gray-300">+91 93804 63538</p>
+              </div>
+            </motion.div>
+            
+          </div>
+        </div>
+        
+        {/* Background elements */}
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
       </section>
     </div>
   );
