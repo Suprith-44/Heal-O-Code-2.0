@@ -816,7 +816,7 @@ const handleWheel = (e) => {
               <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-yellow-500/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">₹10,000</div>
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">₹8,000</div>
                   <p className="text-gray-300">First Prize</p>
                   
                   <div className="w-16 h-1 bg-yellow-500/30 mx-auto my-4"></div>
@@ -844,7 +844,7 @@ const handleWheel = (e) => {
               <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-gray-400/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-300 to-gray-400 text-transparent bg-clip-text">₹5,000</div>
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-300 to-gray-400 text-transparent bg-clip-text">₹6,000</div>
                   <p className="text-gray-300">Second Prize</p>
                   
                   <div className="w-16 h-1 bg-gray-400/30 mx-auto my-4"></div>
@@ -872,7 +872,7 @@ const handleWheel = (e) => {
               <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-amber-700/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-700/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-amber-600 to-amber-700 text-transparent bg-clip-text">₹3,000</div>
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-amber-600 to-amber-700 text-transparent bg-clip-text">₹4,000</div>
                   <p className="text-gray-300">Third Prize</p>
                   
                   <div className="w-16 h-1 bg-amber-700/30 mx-auto my-4"></div>
