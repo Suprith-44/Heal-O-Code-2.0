@@ -622,7 +622,7 @@ const handleWheel = (e) => {
       {/* Placeholder sections for future development */}
       <section 
         id="timeline" 
-        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-12"
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
       >
         <div className="container mx-auto max-w-5xl">
           <motion.div
@@ -641,68 +641,310 @@ const handleWheel = (e) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center mb-12"
           >
             <div className="relative inline-block mb-5">
               <div className="absolute inset-0 blur-xl bg-pink-500/20 rounded-full"></div>
               <Clock className="text-pink-500 mx-auto" size={64} />
             </div>
             
-            <h3 className="text-2xl font-bold mb-3">Coming Soon!</h3>
-            
-            <p className="text-gray-400 max-w-2xl mx-auto mb-6">
-              We're finalizing the exciting timeline for HEAL-O-CODE 2.0. 
-              Check back soon for detailed schedule information including mentoring sessions, coding periods, and the final presentation.
+            <h3 className="text-2xl font-bold mb-3">Hackathon Schedule</h3>
+            <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+              Join us for an action-packed 24 hours of coding, collaboration, mentorship and innovation!
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-8">
+            {/* Timeline container */}
+            <div className="relative text-left">
+              {/* Day 1 Header */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.4 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-black/40 p-5 rounded-lg border border-pink-500/20 backdrop-blur-sm"
+                className="flex items-center mb-6"
               >
-                <div className="flex items-center mb-3 text-pink-500 justify-center">
-                  <Calendar size={24} />
-                  <h4 className="ml-2 text-lg font-medium"></h4>
+                <div className="h-12 w-12 rounded-full bg-pink-500/20 flex items-center justify-center border border-pink-500">
+                  <Calendar className="text-pink-500" size={20} />
                 </div>
-                <p className="text-gray-400 text-sm">
-                  Opening ceremony, team formations, and challenge announcements
-                </p>
+                <h3 className="text-2xl ml-4 font-bold text-pink-400">Day 1 - 28th March 2025</h3>
               </motion.div>
               
+              {/* Vertical line */}
+              <div className="absolute top-12 left-6 w-0.5 h-[calc(100%-4rem)] bg-gradient-to-b from-pink-500 via-pink-400 to-pink-500/30"></div>
+              
+              {/* Day 1 Timeline Items */}
+              <div className="ml-10 mb-12">
+
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">5:00 PM</div>
+                    <h4 className="text-lg font-bold mb-2">Arrival of Participants</h4>
+                  </div>
+                </motion.div>
+
+                {/* Timeline Item 1 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">5:30 PM - 6:00 PM</div>
+                    <h4 className="text-lg font-bold mb-2">Inauguration</h4>
+                    <p className="text-gray-400 text-sm">Welcome ceremony and introduction to the hackathon</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 2 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">6:00 PM - 8:00 PM</div>
+                    <h4 className="text-lg font-bold mb-2">First Coding Round</h4>
+                    <p className="text-gray-400 text-sm">Teams begin working on their projects</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 3 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">8:00 PM - 9:00 PM</div>
+                    <h4 className="text-lg font-bold mb-2">Dinner</h4>
+                    <p className="text-gray-400 text-sm">Refuel and network with other participants</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 4 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">9:00 PM - 10:30 PM</div>
+                    <h4 className="text-lg font-bold mb-2">First Mentoring Session</h4>
+                    <p className="text-gray-400 text-sm">Expert mentors help teams refine their ideas</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 5 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">10:30 PM - 1:00 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Second Coding Round</h4>
+                    <p className="text-gray-400 text-sm">Continue development with feedback from mentors</p>
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Day 2 Header */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-black/40 p-5 rounded-lg border border-pink-500/20 backdrop-blur-sm"
+                className="flex items-center mb-6"
               >
-                <div className="flex items-center mb-3 text-pink-500 justify-center">
-                  <Code size={24} />
-                  <h4 className="ml-2 text-lg font-medium"></h4>
+                <div className="h-12 w-12 rounded-full bg-pink-500/20 flex items-center justify-center border border-pink-500">
+                  <Calendar className="text-pink-500" size={20} />
                 </div>
-                <p className="text-gray-400 text-sm">
-                  24-hour coding period with mentor support and workshops
-                </p>
+                <h3 className="text-2xl ml-4 font-bold text-pink-400">Day 2 - 29th March 2025</h3>
               </motion.div>
               
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="bg-black/40 p-5 rounded-lg border border-pink-500/20 backdrop-blur-sm"
-              >
-                <div className="flex items-center mb-3 text-pink-500 justify-center">
-                  <Trophy size={24} />
-                  <h4 className="ml-2 text-lg font-medium"></h4>
-                </div>
-                <p className="text-gray-400 text-sm">
-                  Project presentations, judging, and awards ceremony
-                </p>
-              </motion.div>
+              {/* Day 2 Timeline Items */}
+              <div className="ml-10">
+                {/* Timeline Item 6 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">1:00 AM - 1:30 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Mini Games</h4>
+                    <p className="text-gray-400 text-sm">Fun activities to re-energize participants</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 7 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">1:30 AM - 3:00 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Second Mentoring Session</h4>
+                    <p className="text-gray-400 text-sm">Additional guidance from domain experts</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 8 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">3:00 AM - 7:30 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Final Coding Round</h4>
+                    <p className="text-gray-400 text-sm">Complete project development and prepare presentations</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 9 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">7:30 AM - 8:30 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Breakfast</h4>
+                    <p className="text-gray-400 text-sm">Morning refreshments before final presentations</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 10 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">8:30 AM - 11:00 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Final Mentoring & Shortlisting</h4>
+                    <p className="text-gray-400 text-sm">Last-minute guidance and selection of finalists</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 11 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">11:00 AM - 11:30 AM</div>
+                    <h4 className="text-lg font-bold mb-2">Welcoming Judges</h4>
+                    <p className="text-gray-400 text-sm">Introduction of judges and evaluation criteria</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 12 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.7 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm">
+                    <div className="text-pink-400 font-semibold mb-1">11:30 AM - 12:30 PM</div>
+                    <h4 className="text-lg font-bold mb-2">Presentations</h4>
+                    <p className="text-gray-400 text-sm">Teams present their solutions to the judges</p>
+                  </div>
+                </motion.div>
+                
+                {/* Timeline Item 13 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                  viewport={{ once: true }}
+                  className="relative mb-8 pl-8"
+                >
+                  <div className="absolute left-[-40px] top-0 h-6 w-6 rounded-full bg-gradient-to-r from-pink-600 to-pink-400 flex items-center justify-center">
+                    <div className="h-2 w-2 rounded-full bg-white"></div>
+                  </div>
+                  <div className="bg-black/40 p-4 rounded-lg border border-pink-500/30 backdrop-blur-sm relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10">
+                      <div className="text-pink-400 font-semibold mb-1">12:30 PM - 1:00 PM</div>
+                      <h4 className="text-lg font-bold mb-2">Winner Announcement & Prize Distribution</h4>
+                      <p className="text-gray-400 text-sm">Celebration of winners and concluding ceremony</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -922,7 +1164,7 @@ const handleWheel = (e) => {
         
         {/* Background elements */}
         <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
         <motion.div
           initial={{ rotate: 0 }}
           animate={{ rotate: 360 }}
