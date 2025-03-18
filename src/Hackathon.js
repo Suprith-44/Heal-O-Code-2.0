@@ -429,7 +429,7 @@ const handleWheel = (e) => {
               className="h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent absolute bottom-0"
             ></motion.div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4">
             <span className="text-pink-500">HEAL</span>-O-
             <span className="text-pink-500">CODE</span> 2.0
           </h1>
@@ -438,13 +438,13 @@ const handleWheel = (e) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex items-center justify-center space-x-4 mb-12"
+            className="flex items-center justify-center space-x-2 sm:space-x-4 mb-8 sm:mb-12"
           >
-            <Heart className="text-pink-500" size={24} />
-            <h2 className="text-xl md:text-2xl font-light italic">
+            <Heart className="text-pink-500 hidden sm:block" size={24} />
+            <h2 className="text-lg sm:text-xl md:text-2xl font-light italic">
               Code, Create, Cure: Where Tech Meets Wellness
             </h2>
-            <Code className="text-pink-500" size={24} />
+            <Code className="text-pink-500 hidden sm:block" size={24} />
           </motion.div>
           
           <div className="mb-12">
@@ -452,40 +452,40 @@ const handleWheel = (e) => {
               REGISTRATION DEADLINE
             </div>
             
-            {/* Add this attractive date display */}
+            {/* Add this attractive date display with responsive padding */}
             <div className="mb-5">
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-pink-600/20 to-pink-400/20 border border-pink-500/50"
+                className="inline-block px-4 sm:px-6 py-2 rounded-full bg-gradient-to-r from-pink-600/20 to-pink-400/20 border border-pink-500/50"
               >
-                <span className="text-white font-medium">
-                  <span className="text-pink-400 mr-2">⏰</span>
-                  <span className="text-xl font-bold text-white">25</span>
-                  <sup className="text-sm text-pink-300">th</sup> 
-                  <span className="text-xl font-bold ml-1 text-white">March 2025</span>
-                  <span className="text-pink-300 ml-2 font-light">23:59 IST</span>
+                <span className="text-white font-medium text-sm sm:text-base">
+                  <span className="text-pink-400 mr-1 sm:mr-2">⏰</span>
+                  <span className="text-lg sm:text-xl font-bold text-white">25</span>
+                  <sup className="text-xs sm:text-sm text-pink-300">th</sup> 
+                  <span className="text-lg sm:text-xl font-bold ml-1 text-white">March 2025</span>
+                  <span className="text-pink-300 ml-1 sm:ml-2 font-light text-sm sm:text-base">23:59 IST</span>
                 </span>
               </motion.div>
             </div>
             
-            {/* Countdown timer boxes */}
-            <div className="flex justify-center gap-4">
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{days}</div>
+            {/* Responsive countdown timer boxes */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{days}</div>
                 <div className="text-xs text-gray-300 font-medium">DAYS</div>
               </div>
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{hours}</div>
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{hours}</div>
                 <div className="text-xs text-gray-300 font-medium">HOURS</div>
               </div>
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{minutes}</div>
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{minutes}</div>
                 <div className="text-xs text-gray-300 font-medium">MINUTES</div>
               </div>
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{seconds}</div>
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{seconds}</div>
                 <div className="text-xs text-gray-300 font-medium">SECONDS</div>
               </div>
             </div>
@@ -816,7 +816,7 @@ const handleWheel = (e) => {
               <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-yellow-500/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">₹8,000</div>
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-500 text-transparent bg-clip-text">₹10,000</div>
                   <p className="text-gray-300">First Prize</p>
                   
                   <div className="w-16 h-1 bg-yellow-500/30 mx-auto my-4"></div>
@@ -844,7 +844,7 @@ const handleWheel = (e) => {
               <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-gray-400/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-300 to-gray-400 text-transparent bg-clip-text">₹6,000</div>
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-gray-300 to-gray-400 text-transparent bg-clip-text">₹5,000</div>
                   <p className="text-gray-300">Second Prize</p>
                   
                   <div className="w-16 h-1 bg-gray-400/30 mx-auto my-4"></div>
@@ -872,7 +872,7 @@ const handleWheel = (e) => {
               <div className="bg-gradient-to-b from-black to-black/80 rounded-xl border-2 border-amber-700/50 p-8 pt-12 text-center mt-6 h-full relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-700/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-amber-600 to-amber-700 text-transparent bg-clip-text">₹4,000</div>
+                  <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-amber-600 to-amber-700 text-transparent bg-clip-text">₹3,000</div>
                   <p className="text-gray-300">Third Prize</p>
                   
                   <div className="w-16 h-1 bg-amber-700/30 mx-auto my-4"></div>
@@ -1159,13 +1159,7 @@ const handleWheel = (e) => {
             <p className="text-gray-400">
               Have a question that's not answered here? Feel free to reach out!
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-pink-600 to-pink-400 text-white font-medium py-2 px-6 rounded-full mt-4 shadow-lg shadow-pink-500/20 hover:shadow-pink-500/40 transition-all"
-            >
-              Contact Us
-            </motion.button>
+            
           </motion.div>
         </div>
         
@@ -1231,6 +1225,19 @@ const handleWheel = (e) => {
                 <h3 className="text-lg font-semibold mb-2">Phone</h3>
                 <p className="text-gray-300">Club Head: Sameer Beedi</p>
                 <p className="text-gray-300">+91 93804 63538</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="mb-6"
+            >
+              <div className="bg-black p-6 rounded-xl border border-pink-500/30 hover:border-pink-500/50 transition-all">
+                <h3 className="text-lg font-semibold mb-2">Instagram</h3>
+                <p className="text-gray-300">ID: weal_ecc</p>
               </div>
             </motion.div>
             
