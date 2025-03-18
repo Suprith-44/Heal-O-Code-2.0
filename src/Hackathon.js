@@ -429,7 +429,7 @@ const handleWheel = (e) => {
               className="h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent absolute bottom-0"
             ></motion.div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4">
             <span className="text-pink-500">HEAL</span>-O-
             <span className="text-pink-500">CODE</span> 2.0
           </h1>
@@ -438,13 +438,13 @@ const handleWheel = (e) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex items-center justify-center space-x-4 mb-12"
+            className="flex items-center justify-center space-x-2 sm:space-x-4 mb-8 sm:mb-12"
           >
-            <Heart className="text-pink-500" size={24} />
-            <h2 className="text-xl md:text-2xl font-light italic">
+            <Heart className="text-pink-500 hidden sm:block" size={24} />
+            <h2 className="text-lg sm:text-xl md:text-2xl font-light italic">
               Code, Create, Cure: Where Tech Meets Wellness
             </h2>
-            <Code className="text-pink-500" size={24} />
+            <Code className="text-pink-500 hidden sm:block" size={24} />
           </motion.div>
           
           <div className="mb-12">
@@ -452,40 +452,40 @@ const handleWheel = (e) => {
               REGISTRATION DEADLINE
             </div>
             
-            {/* Add this attractive date display */}
+            {/* Add this attractive date display with responsive padding */}
             <div className="mb-5">
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-pink-600/20 to-pink-400/20 border border-pink-500/50"
+                className="inline-block px-4 sm:px-6 py-2 rounded-full bg-gradient-to-r from-pink-600/20 to-pink-400/20 border border-pink-500/50"
               >
-                <span className="text-white font-medium">
-                  <span className="text-pink-400 mr-2">⏰</span>
-                  <span className="text-xl font-bold text-white">25</span>
-                  <sup className="text-sm text-pink-300">th</sup> 
-                  <span className="text-xl font-bold ml-1 text-white">March 2025</span>
-                  <span className="text-pink-300 ml-2 font-light">23:59 IST</span>
+                <span className="text-white font-medium text-sm sm:text-base">
+                  <span className="text-pink-400 mr-1 sm:mr-2">⏰</span>
+                  <span className="text-lg sm:text-xl font-bold text-white">25</span>
+                  <sup className="text-xs sm:text-sm text-pink-300">th</sup> 
+                  <span className="text-lg sm:text-xl font-bold ml-1 text-white">March 2025</span>
+                  <span className="text-pink-300 ml-1 sm:ml-2 font-light text-sm sm:text-base">23:59 IST</span>
                 </span>
               </motion.div>
             </div>
             
-            {/* Countdown timer boxes */}
-            <div className="flex justify-center gap-4">
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{days}</div>
+            {/* Responsive countdown timer boxes */}
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{days}</div>
                 <div className="text-xs text-gray-300 font-medium">DAYS</div>
               </div>
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{hours}</div>
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{hours}</div>
                 <div className="text-xs text-gray-300 font-medium">HOURS</div>
               </div>
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{minutes}</div>
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{minutes}</div>
                 <div className="text-xs text-gray-300 font-medium">MINUTES</div>
               </div>
-              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-4 w-24 shadow-lg shadow-pink-500/20">
-                <div className="text-4xl font-bold text-pink-400">{seconds}</div>
+              <div className="bg-gradient-to-b from-black to-gray-900 border-2 border-pink-500 rounded-lg p-2 sm:p-4 w-20 sm:w-24 shadow-lg shadow-pink-500/20">
+                <div className="text-3xl sm:text-4xl font-bold text-pink-400">{seconds}</div>
                 <div className="text-xs text-gray-300 font-medium">SECONDS</div>
               </div>
             </div>
@@ -546,19 +546,41 @@ const handleWheel = (e) => {
             <p className="text-gray-300 leading-relaxed mb-6">
               HEAL-O-CODE 2.0 is a premier health-tech hackathon organized by the WEAL Club of PES University. This innovative event brings together passionate developers, designers, and healthcare enthusiasts to create technological solutions addressing critical healthcare challenges. Participants will work in teams to develop prototypes that could potentially transform the healthcare industry, focusing on accessibility, efficiency, and patient care. Join us for an unforgettable 24-hour journey of coding, collaboration, and innovation at the intersection of technology and wellness.
             </p>
-            
-            {/* Venue information with icon and styling */}
-            <div className="mt-8 bg-black/50 p-4 rounded-lg border border-pink-500/20">
-              <div className="flex items-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-                <h4 className="text-lg font-semibold text-white">Venue</h4>
+
+            {/* Hackathon Dates information */}
+            <div className="bg-black/50 p-4 rounded-lg border border-pink-500/20">
+                <div className="flex items-center mb-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                  </svg>
+                  <h4 className="text-lg font-semibold text-white">Event Dates</h4>
+                </div>
+                <div className="text-gray-300 pl-7">
+                  <p className="mb-1">
+                    <span className="bg-gradient-to-r from-pink-400 to-pink-500 text-transparent bg-clip-text font-medium">Start:</span> 28th March 2025, 5:00 PM
+                  </p>
+                  <p>
+                    <span className="bg-gradient-to-r from-pink-400 to-pink-500 text-transparent bg-clip-text font-medium">End:</span> 29th March 2025, 1:00 PM
+                  </p>
+                </div>
               </div>
-              <p className="text-gray-300 pl-7">
-                <span className="bg-gradient-to-r from-pink-400 to-pink-500 text-transparent bg-clip-text font-medium">MRD Student Center</span>, 
-                PES University, Electronic City Campus
-              </p>
+            
+            <div className="mt-8 space-y-4">
+              {/* Venue information */}
+              <div className="bg-black/50 p-4 rounded-lg border border-pink-500/20">
+                <div className="flex items-center mb-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                  <h4 className="text-lg font-semibold text-white">Venue</h4>
+                </div>
+                <p className="text-gray-300 pl-7">
+                  <span className="bg-gradient-to-r from-pink-400 to-pink-500 text-transparent bg-clip-text font-medium">MRD Student Center</span>, 
+                  PES University, Electronic City Campus
+                </p>
+              </div>
+              
+              
             </div>
           </motion.div>
           
