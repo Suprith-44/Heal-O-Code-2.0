@@ -188,7 +188,7 @@ const handleWheel = (e) => {
               transition={{ duration: 1.5, ease: "easeInOut" }}
               className="relative z-10"
             >
-              <img src="https://i.ibb.co/97YkK1x/weal-removebg-preview.png" alt="WEAL Logo" className="w-64 h-64 object-contain" />
+              <img src="https://i.ibb.co/9kNWRD27/weal2.png" alt="WEAL Logo" className="w-64 h-64 object-contain" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -294,7 +294,7 @@ const handleWheel = (e) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-pink-600">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <img src="https://i.ibb.co/97YkK1x/weal-removebg-preview.png" alt="WEAL Logo" className="h-8 w-8 mr-3" />
+            <img src="https://i.ibb.co/9kNWRD27/weal2.png" alt="WEAL Logo" className="h-8 w-8 mr-3" />
             <div className="text-xl font-bold text-pink-500">HEAL-O-CODE 2.0</div>
           </div>
           <div className="hidden md:flex space-x-6">
