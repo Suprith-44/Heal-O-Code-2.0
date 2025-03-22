@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Brain, FileText, Globe, Eye, Microscope, Database, MessageSquare, Smartphone, Fingerprint } from 'lucide-react';
 
 const ProblemStatements = () => {
+  // Add this useEffect to scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Navigation Bar */}
