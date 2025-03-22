@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Code, Calendar, Trophy, Clock, ChevronDown, Users, MessageCircle, HelpCircle, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-// Add this CustomCursor component
+// Optimized CustomCursor component with reduced lag
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
   
   useEffect(() => {
+    // Create a throttling mechanism
+    let lastUpdate = 0;
+    const throttleAmount = 5; // ms between updates
+    
     const moveCursor = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      const now = Date.now();
+      if (now - lastUpdate < throttleAmount) return;
       
-      // Check if the cursor is over a clickable element
-      const target = e.target;
-      const clickableElements = ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
-      setIsPointer(
-        clickableElements.includes(target.tagName) || 
-        window.getComputedStyle(target).cursor === 'pointer'
-      );
+      lastUpdate = now;
+      requestAnimationFrame(() => {
+        setPosition({ x: e.clientX, y: e.clientY });
+        
+        // Check if the cursor is over a clickable element
+        const target = e.target;
+        const clickableElements = ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
+        setIsPointer(
+          clickableElements.includes(target.tagName) || 
+          window.getComputedStyle(target).cursor === 'pointer'
+        );
+      });
     };
     
     window.addEventListener('mousemove', moveCursor);
@@ -29,46 +40,49 @@ const CustomCursor = () => {
   
   return (
     <>
+      {/* Main cursor dot - simplified animation settings */}
       <motion.div
         className="fixed top-0 left-0 w-5 h-5 rounded-full bg-blue-400/50 pointer-events-none z-[9999] mix-blend-screen"
-        animate={{
+        style={{
           x: position.x - 10,
           y: position.y - 10,
           scale: isPointer ? 1.5 : 1,
         }}
         transition={{
           type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5,
+          stiffness: 800,
+          damping: 35,
+          mass: 0.2,
         }}
       />
+      
+      {/* First ring - simplified to follow without complex spring physics */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-blue-300/30 pointer-events-none z-[9998]"
-        animate={{
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-pink-300/30 pointer-events-none z-[9998]"
+        style={{
           x: position.x - 20,
           y: position.y - 20,
           scale: isPointer ? 1.2 : 1,
         }}
         transition={{
-          type: "spring",
-          stiffness: 250,
-          damping: 20,
-          mass: 0.8,
+          type: "tween",
+          ease: "easeOut",
+          duration: 0.1,
         }}
       />
+      
+      {/* Outer ring - more lightweight animation */}
       <motion.div
-        className="fixed top-0 left-0 w-24 h-24 rounded-full border border-blue-300/10 pointer-events-none z-[9997] blur-sm"
-        animate={{
+        className="fixed top-0 left-0 w-24 h-24 rounded-full border border-pink-300/10 pointer-events-none z-[9997] blur-sm"
+        style={{
           x: position.x - 48,
           y: position.y - 48,
           scale: isPointer ? 1.1 : 1,
         }}
         transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 30,
-          mass: 1,
+          type: "tween",
+          ease: "easeOut",
+          duration: 0.2,
         }}
       />
     </>
@@ -127,7 +141,7 @@ const HackathonWebsite = () => {
     return () => clearInterval(interval);
   }, []);
   
-  const sections = ['home', 'about', 'timeline', 'challenges', 'prizepool', 'faq', 'contact'];
+  const sections = ['home', 'about', 'timeline', 'problem-statements', 'prize-pool', 'faq', 'contact'];
   
   const scrollToSection = (section) => {
     setCurrentSection(section);
@@ -955,7 +969,7 @@ const handleWheel = (e) => {
       </section>
 
       <section 
-        id="challenges" 
+        id="problem-statements" 
         className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
       >
         <div className="container mx-auto max-w-5xl">
@@ -966,7 +980,7 @@ const handleWheel = (e) => {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="text-4xl font-bold mb-2">Challenges</h2>
+            <h2 className="text-4xl font-bold mb-2">Problem Statements</h2>
             <div className="w-24 h-1 bg-pink-500 mx-auto"></div>
           </motion.div>
           
@@ -982,14 +996,14 @@ const handleWheel = (e) => {
               <Code className="text-pink-500 mx-auto mb-6" size={64} />
             </div>
             
-            <h3 className="text-2xl font-bold mb-4">Challenges Unveiling Soon!</h3>
+            <h3 className="text-2xl font-bold mb-4">Problem Statements Released!</h3>
             
             <p className="text-gray-400 max-w-2xl mx-auto mb-10">
-              Our team of experts is crafting innovative health-tech challenges that will push your creativity and technical skills to new heights. 
-              The challenge tracks will be announced soon.
+              Our team of experts has crafted innovative health-tech challenges that will push your creativity and technical skills to new heights. 
+              Check out the problem statements and start brainstorming your solutions!
             </p>
             
-            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
               <div className="bg-black/60 border border-pink-500/20 rounded-lg p-5 backdrop-blur-sm relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
@@ -1015,15 +1029,39 @@ const handleWheel = (e) => {
                 </div>
               </div>
             </div>
+            
+            {/* New Button to view problem statements */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Link to="/problem-statements">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-purple-600 to-purple-400 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all"
+                >
+                  <span className="flex items-center">
+                    <span className="mr-2">View Problem Statements</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14"></path>
+                      <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </motion.button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
         
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-purple-600 opacity-5 blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-64 h-64 rounded-full bg-purple-400 opacity-5 blur-3xl"></div>
       </section>
       
       <section 
-        id="prizepool" 
+        id="prize-pool" 
         className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-16"
       >
         <div className="container mx-auto max-w-5xl">
