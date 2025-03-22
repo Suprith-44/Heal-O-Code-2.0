@@ -104,27 +104,28 @@ const ProblemStatements = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.4 }}
             className="bg-black/60 border border-pink-500/30 rounded-lg p-6 backdrop-blur-sm h-full"
-          >
+            >
             <div className="flex items-center mb-4">
-              <div className="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center mr-4">
+                <div className="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center mr-4">
                 <Eye className="text-pink-500" size={24} />
-              </div>
-              <h2 className="text-xl font-bold">Glaucoma & ROP Screening System</h2>
+                </div>
+                <h2 className="text-xl font-bold">Glaucoma & ROP Screening System</h2>
             </div>
             <div className="mb-3 text-pink-300 text-sm font-semibold">Domain: Computer Vision & Deep Learning</div>
             <p className="text-gray-300 mb-4">
-              An advanced system for early detection and screening of Glaucoma using Fundus photos and RNFL (OCT), combined with automated time tracking of ROP screening. The solution provides automated reviews and sends notifications to doctors upon failure to review cases, ensuring timely intervention and treatment for patients with eye conditions.
+                Develop an AI-based diagnostic tool that accurately detects glaucoma and determines the stage of Retinopathy of Prematurity (ROP) using fundus photographs. The system should analyze optic disc features for glaucoma detection and evaluate retinal vasculature patterns to classify ROP stages, providing early diagnosis for timely intervention.
             </p>
             <div className="bg-pink-500/10 p-3 rounded-lg mt-auto">
-              <h3 className="font-semibold mb-2 text-pink-300">Key Requirements:</h3>
-              <ul className="list-disc pl-5 text-gray-300 space-y-1">
-                <li>AI model for analyzing retinal images</li>
-                <li>Automated screening workflow management</li>
-                <li>Alert system for missed or delayed reviews</li>
-                <li>Integration with ophthalmology equipment</li>
-              </ul>
+                <h3 className="font-semibold mb-2 text-pink-300">Key Requirements:</h3>
+                <ul className="list-disc pl-5 text-gray-300 space-y-1">
+                <li>AI model for glaucoma detection with high accuracy</li>
+                <li>ROP staging algorithm (Stage 1-5) using fundus images</li>
+                <li>User-friendly interface for ophthalmologists</li>
+                <li>Visual highlighting of suspicious areas in images</li>
+                <li>Report generation with diagnostic confidence scores</li>
+                </ul>
             </div>
-          </motion.div>
+            </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
