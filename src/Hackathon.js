@@ -1155,6 +1155,13 @@ const handleWheel = (e) => {
                 ₹18,000
               </div>
               <p className="text-gray-300 mb-2">Win big and gain recognition for your innovative health-tech solutions</p>
+
+              <div className="mt-4 p-3 bg-gradient-to-r from-purple-600/20 to-pink-500/20 rounded-lg border border-pink-500/30">
+              <h4 className="text-lg font-semibold mb-1 text-white">Internship Opportunity</h4>
+              <p className="text-gray-300 text-sm">
+                Top 3 teams will be offered with summer internship at <span className="text-white">CoDMAV</span> (Centre of Data Modelling and Visualization) where they will be provided with research and mentorship opportunities to build on their product
+              </p>
+            </div>
             </motion.div>
           </motion.div>
           
@@ -1180,7 +1187,8 @@ const handleWheel = (e) => {
                   
                   <ul className="text-gray-400 text-sm space-y-2">
                     <li>Winner Certificates</li>
-                    <li>Exclusive Opportunities</li>
+                    <li>Summer Internship at CoDMAV</li>
+                    <li>Research & Mentorship Opportunities</li>
                     <li>Recognition at Awards Ceremony</li>
                   </ul>
                 </div>
@@ -1208,7 +1216,8 @@ const handleWheel = (e) => {
                   
                   <ul className="text-gray-400 text-sm space-y-2">
                     <li>Runner-up Certificates</li>
-                    <li>Networking Opportunities</li>
+                    <li>Summer Internship at CoDMAV</li>
+                    <li>Research & Mentorship Opportunities</li>
                     <li>Recognition at Awards Ceremony</li>
                   </ul>
                 </div>
@@ -1236,7 +1245,8 @@ const handleWheel = (e) => {
                   
                   <ul className="text-gray-400 text-sm space-y-2">
                     <li>2nd Runner-Up Certificates</li>
-                    <li>Networking Opportunities</li>
+                    <li>Summer Internship at CoDMAV</li>
+                    <li>Research & Mentorship Opportunities</li>
                     <li>Recognition at Awards Ceremony</li>
                   </ul>
                 </div>
