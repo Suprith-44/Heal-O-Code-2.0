@@ -98,6 +98,8 @@ const HackathonWebsite = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  // Add this new state for mobile menu
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Set the registration deadline (example: April 15, 2025)
   const deadline = new Date("March 25, 2025 23:59:59").getTime();
@@ -143,10 +145,32 @@ const HackathonWebsite = () => {
   
   const sections = ['home', 'about', 'timeline', 'problem-statements', 'prize-pool', 'faq', 'contact'];
   
-  const scrollToSection = (section) => {
-    setCurrentSection(section);
-    document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
-  };
+  // Update the scrollToSection function to ensure it works properly on mobile
+
+const scrollToSection = (section) => {
+  setCurrentSection(section);
+  
+  // Close mobile menu if open
+  if (mobileMenuOpen) {
+    setMobileMenuOpen(false);
+  }
+  
+  // Use setTimeout to ensure menu closing animation completes before scrolling
+  setTimeout(() => {
+    const element = document.getElementById(section);
+    if (element) {
+      // Smooth scroll with proper offset to account for fixed header
+      const headerOffset = 80; // Adjust based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }, 10);
+};
   
   // Replace your current handleWheel function with this improved version
 const handleWheel = (e) => {
@@ -324,12 +348,42 @@ const handleWheel = (e) => {
               </button>
             ))}
           </div>
-          <button className="md:hidden text-pink-500">
+          <button 
+            className="md:hidden text-pink-500"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-black/95 backdrop-blur-md border-b border-pink-600"
+            >
+              <div className="container mx-auto px-4 py-4">
+              {sections.map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`block w-full text-left py-3 uppercase font-medium hover:text-pink-400 transition-colors ${
+                    currentSection === section ? 'text-pink-500' : 'text-gray-300'
+                  }`}
+                >
+                  {section}
+                </button>
+              ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
       
       {/* Home Section */}
@@ -1003,6 +1057,31 @@ const handleWheel = (e) => {
               Check out the problem statements and start brainstorming your solutions!
             </p>
             
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Link to="/problem-statements">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-purple-600 to-purple-400 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all"
+                >
+                  <span className="flex items-center">
+                    <span className="mr-2">View Problem Statements</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14"></path>
+                      <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </motion.button>
+              </Link>
+            </motion.div>
+              < br />
+              < br />
+
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
               <div className="bg-black/60 border border-pink-500/20 rounded-lg p-5 backdrop-blur-sm relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -1029,30 +1108,6 @@ const handleWheel = (e) => {
                 </div>
               </div>
             </div>
-            
-            {/* New Button to view problem statements */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Link to="/problem-statements">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-purple-600 to-purple-400 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all"
-                >
-                  <span className="flex items-center">
-                    <span className="mr-2">View Problem Statements</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </span>
-                </motion.button>
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
         
@@ -1548,7 +1603,7 @@ const handleWheel = (e) => {
         
         {/* Background elements */}
         <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-pink-600 opacity-5 blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-pink-400 opacity-5 blur-3xl"></div>
       </section>
     </div>
   );
