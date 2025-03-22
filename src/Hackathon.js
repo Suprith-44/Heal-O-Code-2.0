@@ -1159,7 +1159,7 @@ const handleWheel = (e) => {
               <div className="mt-4 p-3 bg-gradient-to-r from-purple-600/20 to-pink-500/20 rounded-lg border border-pink-500/30">
               <h4 className="text-lg font-semibold mb-1 text-white">Internship Opportunity</h4>
               <p className="text-gray-300 text-sm">
-                Top 3 teams will be offered with summer internship at <span className="text-white">CoDMAV</span> (Centre of Data Modelling and Visualization) where they will be provided with research and mentorship opportunities to build on their product
+                Top 3 teams will be offered Summer Internship at <span className="text-white">CoDMAV</span> (Centre of Data Modelling, Analytics and Visualization) where they will be provided with research and mentorship opportunities to build on their product
               </p>
             </div>
             </motion.div>
