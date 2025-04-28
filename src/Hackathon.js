@@ -563,9 +563,9 @@ const handleWheel = (e) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-pink-600 to-pink-400 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all"
-            onClick={() => window.open("https://forms.gle/wPkrVQwQkpAFcVp86", "_blank")}
+            // onClick={() => window.open("https://forms.gle/wPkrVQwQkpAFcVp86", "_blank")}
           >
-            REGISTER NOW
+            REGISTRATIONS ARE CLOSED!
           </motion.button>
         </motion.div>
         
@@ -1159,7 +1159,7 @@ const handleWheel = (e) => {
               <div className="mt-4 p-3 bg-gradient-to-r from-purple-600/20 to-pink-500/20 rounded-lg border border-pink-500/30">
               <h4 className="text-lg font-semibold mb-1 text-white">Internship Opportunity</h4>
               <p className="text-gray-300 text-sm">
-                Top 3 teams will be offered Summer Internship at <span className="text-white">CoDMAV</span> (Centre of Data Modelling, Analytics and Visualization) where they will be provided with research and mentorship opportunities to build on their product
+                Top 3 teams will be offered with summer internship at <span className="text-white">CoDMAV</span> (Centre of Data Modelling and Visualization) where they will be provided with research and mentorship opportunities to build on their product
               </p>
             </div>
             </motion.div>
